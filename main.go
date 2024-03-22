@@ -1,7 +1,6 @@
 package main
 
 import (
-	// "bufio"
 	"bufio"
 	"flag"
 	"fmt"
@@ -23,7 +22,6 @@ func readByte(r io.Reader) (rune, error) {
 }
 
 func wc() int {
-
 	// f, err := os.Open(os.Args[1])
 	f, err := os.Open("ego.txt")
 
@@ -68,7 +66,9 @@ func wc() int {
 			spaceAtEOF = false
 		}
 	}
+	// fmt.Printf("%q: %v\n", "ego.txt", words)
 	return words
+
 }
 
 func main() {
@@ -78,7 +78,7 @@ func main() {
 		if err != nil {
 			log.Fatal("could not create CPU profile: ", err)
 		}
-		defer f.Close() // error handling omitted for example
+		defer f.Close()
 		if err := pprof.StartCPUProfile(f); err != nil {
 			log.Fatal("could not start CPU profile: ", err)
 		}

@@ -40,7 +40,7 @@ time wc -w fileName.txt
 ## Benchmarking
 
 ```
-go test -bench=BenchmarkWC
+go test -bench=BenchmarkWC -benchmem
 ```
 
 ### Baseline:
@@ -52,9 +52,9 @@ goos: windows
 goarch: amd64
 pkg: wc
 cpu: AMD Ryzen 5 5500U with Radeon Graphics
-BenchmarkWC-12                 1        2163414100 ns/op
+BenchmarkWC-12                 1        2029952200 ns/op         1018296 B/op    1015315 allocs/op
 PASS
-ok      wc      2.756s
+ok      wc      2.368s
 ```
 <u>Resource Stats:</u>
 ```
@@ -97,3 +97,25 @@ This will open `pprof` interactive shell. Type in `png` there and press `Enter`
 
 ## Optimization
 
+1. Buffered Reading: Instead of reading Byte by Byte, we'll read the data in chunks and store in internal buffer, thereby reducing the number of direct interactions with the file.
+
+This improves the performance significantly:
+
+<u>Benchmark:</u>
+```
+goos: windows
+goarch: amd64
+pkg: wc
+cpu: AMD Ryzen 5 5500U with Radeon Graphics
+BenchmarkWC-12                52          24686375 ns/op         1020061 B/op    1015300 allocs/op
+PASS
+ok      wc      1.660s
+```
+<u>Time Stat:</u>
+```
+"ego.txt": 160578
+
+real    0m0.153s
+user    0m0.003s
+sys     0m0.026s
+```
