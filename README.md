@@ -56,7 +56,7 @@ BenchmarkWC-12                 1        2029952200 ns/op         1018296 B/op   
 PASS
 ok      wc      2.368s
 ```
-<u>Resource Stats:</u>
+<u>Time Stats:</u>
 ```
 "ego.txt": 160578
 
@@ -111,11 +111,19 @@ BenchmarkWC-12                52          24686375 ns/op         1020061 B/op   
 PASS
 ok      wc      1.660s
 ```
-<u>Time Stat:</u>
+<u>Time Stats for our program:</u>
 ```
 "ego.txt": 160578
 
 real    0m0.153s
 user    0m0.003s
 sys     0m0.026s
+```
+<u>Time Stats for inbuilt `wc` command(for comparison):</u>
+```
+161916 ego.txt
+
+real    0m0.119s
+user    0m0.013s
+sys     0m0.066s
 ```
