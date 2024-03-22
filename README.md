@@ -52,26 +52,26 @@ goos: windows
 goarch: amd64
 pkg: wc
 cpu: AMD Ryzen 5 5500U with Radeon Graphics
-BenchmarkWC-12                 1        1903381200 ns/op
+BenchmarkWC-12                 1        2163414100 ns/op
 PASS
-ok      wc      2.476s
+ok      wc      2.756s
 ```
 <u>Resource Stats:</u>
 ```
 "ego.txt": 160578
 
-real    0m2.223s
-user    0m0.004s
-sys     0m0.030s
+real    0m2.406s
+user    0m0.003s
+sys     0m0.076s
 ```
 <u>Resource Stats for standard `wc` command:</u>
 > Note: There's a difference between word count here, that is because, there are some forms of words that I'm not considering.
 ```
 161916 ego.txt
 
-real    0m0.101s
-user    0m0.008s
-sys     0m0.059s
+real    0m0.117s
+user    0m0.020s
+sys     0m0.076s
 ```
 
 <u>Profiling:</u>
@@ -85,7 +85,7 @@ Visualize the profile in web:
 ```
 go tool pprof -http=:8080 cpu.prof
 ```
-![Profile Image](profile.png)
+![Profile Image](profile1.png)
 
 Want a PNG image of the profile?
 ```
@@ -93,3 +93,7 @@ go tool pprof -output="profile.png" wc.test.exe cpu.prof
 ```
 This will open `pprof` interactive shell. Type in `png` there and press `Enter`
 > Note: Enter your own binary file name in place of `wc.test.exe`
+
+
+## Optimization
+
